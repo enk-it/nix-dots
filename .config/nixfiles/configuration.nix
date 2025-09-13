@@ -51,7 +51,7 @@
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  networking.hostName = "nixpc"; # Define your hostname.
+  networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -164,9 +164,26 @@
   programs.steam.enable = true;
   programs.firefox.enable = true;
   programs.nekoray.tunMode.enable = true;
+  
   programs.zsh = {
     enable = true;
+    enableBashCompletion = true;
+    autosuggestions.enable = true;
+    syntaxHighlighting.enable = true;
+    shellInit = ''
+	neofetch	
+    '';
+};
+
+  programs.zsh.ohMyZsh = {
+    enable = true;
+    plugins = [ "git" ];
+    custom = "$HOME/.oh-my-zsh/custom/";
+    theme = "agnoster";
   };
+
+
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
   
@@ -218,11 +235,11 @@
 	gnome-tweaks
 	texliveFull
 	whatsie
-	jetbrains.webstorm
-	jetbrains.rust-rover
-	jetbrains.pycharm-professional
-	jetbrains.idea-ultimate
-	jetbrains.clion
+ 	jetbrains.webstorm
+ 	jetbrains.rust-rover
+ 	jetbrains.pycharm-professional
+ 	jetbrains.idea-ultimate
+ 	jetbrains.clion
 	openssl
 	python313Packages.nomadnet
 	kdePackages.kdenlive
@@ -266,6 +283,8 @@
 	quickemu
 	virt-manager
 	xfce.thunar
+	fira
+	fira-code
 	  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
 	
 

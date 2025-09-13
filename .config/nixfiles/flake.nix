@@ -11,7 +11,7 @@
   };
 
   outputs = { self, nixpkgs, caelestia-shell, ... }@inputs: {
-    nixosConfigurations.nixpc = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
         ./configuration.nix
