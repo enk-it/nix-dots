@@ -19,6 +19,7 @@
   nixpkgs.config.permittedInsecurePackages = [
 	"openssl-1.1.1w"
 	"qtwebengine-5.15.19"    
+	"freeimage-3.18.0-unstable-2024-04-18"
   ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -77,7 +78,10 @@
     LC_TELEPHONE = "ru_RU.UTF-8";
     LC_TIME = "ru_RU.UTF-8";
   };
-
+  
+  services.blueman.enable = true;
+  hardware.bluetooth.enable = true;
+  
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
@@ -135,7 +139,7 @@
   users.users.silencer = {
     isNormalUser = true;
     description = "silencer";
-    extraGroups = [ "docker" "networkmanager" "wheel" "dialout"];
+    extraGroups = [ "docker" "networkmanager" "wheel" "dialout" "render"];
     packages = with pkgs; [
     #  thunderbird
     ];
@@ -153,7 +157,6 @@
       };
     }
   ];
-
 
   programs.hyprland.enable = true;
   programs.thunderbird.enable = true;
@@ -245,13 +248,24 @@
 	inkscape
 	gcolor3
 	# xdg-desktop-portal-hyprland
-	blueman
 	foot
 	flameshot
 	vimix-cursors
 	fira-code
-	nemo
+  	nemo
+	nemo-fileroller
 	polkit_gnome
+# 	ollama-rocm
+# 	rocmPackages.rocminfo
+#         rocmPackages.rocm-smi
+	radeontop
+	geogebra6
+	rssguard
+	times-newer-roman
+	qemu
+	quickemu
+	virt-manager
+	xfce.thunar
 	  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
 	
 
