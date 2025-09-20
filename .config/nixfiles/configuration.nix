@@ -240,6 +240,7 @@
  	jetbrains.pycharm-professional
  	jetbrains.idea-ultimate
  	jetbrains.clion
+	android-studio
 	openssl
 	python313Packages.nomadnet
 	kdePackages.kdenlive
@@ -285,6 +286,10 @@
 	xfce.thunar
 	fira
 	fira-code
+	zoom-us
+	discord
+	nvme-cli
+	libreoffice-qt6-fresh
 	  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
 	
 
@@ -317,6 +322,11 @@
 	24800
 	 ];
   networking.firewall.allowedTCPPortRanges = [ { from = 30000; to = 30010; } ]; 
+
+  networking = {
+    bridges.br0.interfaces = [ "enp4s0" ];
+    interfaces.br0.useDHCP = true;
+  };
 
  # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
