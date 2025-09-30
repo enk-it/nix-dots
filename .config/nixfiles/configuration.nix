@@ -39,6 +39,10 @@
 
   virtualisation.docker = {
     enable = true;
+    rootless = {
+      enable = true;
+      setSocketVariable = true;
+    };
   };  
 
   services.udev.extraRules = ''
@@ -290,6 +294,7 @@
 	discord
 	nvme-cli
 	libreoffice-qt6-fresh
+	lazygit
 	  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
 	
 
@@ -310,7 +315,9 @@
   # services.openssh.enable = true;
 
   # Open ports in the firewall.
+  networking.firewall.checkReversePath = false;
   networking.firewall.allowedTCPPorts = [ 
+	5432
 	4242
 	24800
 	20
@@ -327,6 +334,10 @@
     bridges.br0.interfaces = [ "enp4s0" ];
     interfaces.br0.useDHCP = true;
   };
+  
+  networking.nftables.enable = true;
+  networking.firewall.enable = true;
+  networking.firewall.package = pkgs.iptables;
 
  # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
